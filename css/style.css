@@ -2,5 +2,27 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', sans-serif;;
+}
+
+body{
+    height: 100vh;
+}
+
+.header{
+    width: 80%;
+    background: linear-gradient(#16222A,#3A6073);
+    text-align: center;
+    margin: 0 auto;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    color: white;
+}
+
+#mapContainer{
+    width: 90%;
+    height: 50%;
+    border: 2px solid grey;
+    margin: 0 auto;
+    border-radius: 10px;
 }
