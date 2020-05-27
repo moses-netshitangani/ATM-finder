@@ -2,9 +2,6 @@
 const appid = 'atv7oByWKH2AxK60DqTf';
 const apikey = 'NMv1ZzOrXhl_P9fbAuennDekhdoGt3EK6K5ZsPjiYPo';
 
-// fetch(`https://cors-anywhere.herokuapp.com/https://revgeocode.search.hereapi.com/v1/revgeocode?xnlp=CL_JSMv3.1.15.2&apikey=NMv1ZzOrXhl_P9fbAuennDekhdoGt3EK6K5ZsPjiYPo&at=-26.271%2C27.89%2C50`)
-// .then(result => result = result.json())
-// .then(res => console.log(res));
 
 let platform = new H.service.Platform({
     'useCIT': true,
@@ -26,6 +23,7 @@ let render = () => {
 
         // Obtain the default map types from the platform object:
         let defaultLayers = platform.createDefaultLayers();
+        defaultLayers.vector.normal.map.setMax(17);
 
         // Instantiate (and display) a map object:
         let map = new H.Map(
@@ -33,24 +31,24 @@ let render = () => {
             defaultLayers.vector.normal.map,
             {
                 zoom: 15,
-                center: { lat: -26.2697299, lng: 27.993394 }
+                center: { lat: lati, lng: lon }
             });
 
         // Marking user's current location on map
-        map.addObject(new H.map.Marker({ lat: -26.269729, lng: 27.993394}));
+        map.addObject(new H.map.Marker({ lat: lati, lng: lon}));
 
 
         // Create the parameters for the routing request:
-        var routingParameters = {
-            'routingMode': 'fast',
-            'transportMode': 'pedestrian',
-            // The start point of the route:
-            'origin': '-26.2697299,27.993394',
-            // The end point of the route:
-            'destination': '-26.2697312,27.694794',
-            // Include the route shape in the response
-            'return': 'polyline'
-        };
+        // var routingParameters = {
+        //     'routingMode': 'fast',
+        //     'transportMode': 'pedestrian',
+        //     // The start point of the route:
+        //     'origin': `${lat},${lon}`,
+        //     // The end point of the route:
+        //     'destination': '-26.2697,27.6947',
+        //     // Include the route shape in the response
+        //     'return': 'polyline'
+        // };
 
         // Define a callback function to process the routing response:
         var onResult = function (result) {
@@ -62,7 +60,7 @@ let render = () => {
 
                     // Create a polyline to display the route:
                     let routeLine = new H.map.Polyline(linestring, {
-                        style: { strokeColor: 'peach', lineWidth: 2 }
+                        style: { strokeColor: 'aqua', lineWidth: 2 }
                     });
 
                     // Create a marker for the start point:
